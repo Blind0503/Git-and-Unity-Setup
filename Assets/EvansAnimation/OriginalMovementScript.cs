@@ -20,6 +20,12 @@ public class OriginalMovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        a.SetFloat("yVelocity", rb2.velocity.y);
+        a.SetBool("Grounded", grounded);
+
+
+
         float horizValue = Input.GetAxis("Horizontal");
 
         if(horizValue == 0)
@@ -37,12 +43,10 @@ public class OriginalMovementScript : MonoBehaviour
         {
             sr.flipX = false;
         }
-
-        if (horizValue < 0)
+        else
         {
             sr.flipX = true;
         }
-
 
         grounded = Physics2D.BoxCast(transform.position, new Vector2(0.1f, 0.1f), 0, Vector2.down, 1, LayerMask.GetMask("Ground"));
         if (grounded && Input.GetKeyDown(KeyCode.Space))
